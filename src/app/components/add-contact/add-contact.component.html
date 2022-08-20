@@ -1,0 +1,48 @@
+<div class="container mt-5">
+
+    <!--  error message -->
+    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{errorMessage}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{successMessage}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+
+    <form [formGroup]="contactForm">
+        <div class="mb-3">
+            <label  class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter your name">
+          </div>
+        <div class="mb-3">
+          <label class="form-label">Email address</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Enter email. Ex: example@example.com">
+          <span style="color:Red" class="error" *ngIf="email?.invalid && email?.touched"> Invalid email address </span>
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Phone Number</label>
+            <input type="text" class="form-control" formControlName="phoneNumber" placeholder="Enter your phone number">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Address</label>
+            <input type="text" class="form-control" formControlName="address" placeholder="Enter your address">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Gender: </label>
+            &nbsp;
+            <input type="radio" value='Male' formControlName="gender" >Male
+            &nbsp;
+            <input type="radio" value='Female' formControlName="gender">Female
+            &nbsp;
+            <input type="radio" value='Other' formControlName="gender">Other
+        </div>
+        <button *ngIf="!getParamId" type="submit" class="btn btn-success" (click)="contactSubmit()">Submit</button>
+        <button *ngIf="getParamId" type="submit" class="btn btn-success"  (click)="contactUpdate()">Update</button>
+      </form>
+</div>
+<!-- 
+ng-model="txtmail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+novalidate ng-submit="personForm.$valid &&sendForm()" 
+ng-app="ngpatternApp" ng-controller="ngpatternCtrl"-->
